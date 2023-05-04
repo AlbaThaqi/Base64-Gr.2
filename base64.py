@@ -14,3 +14,22 @@ def base64_encode(input_string):
         byte1 = input_bytes[i]
         byte2 = input_bytes[i+1] if i+1 < len(input_bytes) else 0
         byte3 = input_bytes[i+2] if i+2 < len(input_bytes) else 0
+        
+        value1 = byte1 >> 2
+        value2 = ((byte1 & 0x03) << 4) | (byte2 >> 4)
+        value3 = ((byte2 & 0x0F) << 2) | (byte3 >> 6)
+        value4 = byte3 & 0x3F
+ 
+        # Shiko karakterin korrospodues per secilen vlere te karakterit te Base64
+        char1 = b64_table[value1]
+        char2 = b64_table[value2]
+        char3 = b64_table[value3]
+        char4 = b64_table[value4]
+        # Shfaqi 4 karakteret e output-it te Base64
+        output_string += char1 + char2 + char3 + char4
+ 
+    padding_length = 4 - (len(input_bytes) % 3)
+    output_string += '=' * padding_length
+ 
+    #  Ktheje rezultatin
+    return output_string
