@@ -20,7 +20,7 @@ def base64_encode(input_string):
         value3 = ((byte2 & 0x0F) << 2) | (byte3 >> 6)
         value4 = byte3 & 0x3F
  
-        # Shiko karakterin korrospodues per secilen vlere te karakterit te Base64
+        # Shiko karakterin korespondues per secilen vlere te karakterit te Base64
         char1 = b64_table[value1]
         char2 = b64_table[value2]
         char3 = b64_table[value3]
@@ -74,3 +74,31 @@ def main(args):
         base64_decode_file(args.inputfilename, args.outputfilename)
 
     return
+
+if __name__ == '__main__':
+
+
+
+    parser = argparse.ArgumentParser(description='Base64')
+
+    required = parser.add_argument_group('required arguments')
+
+    required.add_argument('-m', '--mode', choices=['encode', 'e', 'decode', 'd'],
+
+                          help='Mode: encode or decode', required=True, dest='mode')
+
+
+
+    required.add_argument("-i", "--inputfilename",
+
+                          help="Input file to be processed", required=True, dest='inputfilename')
+
+
+
+    required.add_argument("-o", "--outputfilename",
+
+                          help="Output file to be created", required=True, dest='outputfilename')
+
+
+
+    main(parser.parse_args())
