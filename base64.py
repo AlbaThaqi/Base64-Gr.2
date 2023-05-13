@@ -41,3 +41,36 @@ def base64_encode(input_string):
 def base64_decode_file(input_file_path, output_file_path):
     # Define the Base64 decoding table
     b64_table = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
+    # Convert the four values to three bytes
+
+        byte1 = (value1 << 2) | (value2 >> 4)
+
+        byte2 = ((value2 & 0x0F) << 4) | (value3 >> 2)
+
+        byte3 = ((value3 & 0x03) << 6) | value4
+
+        # Add the three bytes to the output byte array
+
+        output_bytes += bytes([byte1, byte2, byte3])
+
+    # Write the decoded byte array to the output file
+
+    with open(output_file_path, 'wb') as output_file:
+
+        output_file.write(output_bytes)
+
+ 
+
+def main(args):
+
+   
+
+    if (args.mode == 'encode' or args.mode == 'e'):
+
+        base64_encode_file(args.inputfilename, args.outputfilename)
+
+    else:
+
+        base64_decode_file(args.inputfilename, args.outputfilename)
+
+    return
