@@ -33,3 +33,11 @@ def base64_encode(input_string):
  
     #  Ktheje rezultatin
     return output_string
+
+ # Write the Base64-encoded string to the output file
+    with open(output_file_path, 'w') as output_file:
+        output_file.write(output_string)
+
+def base64_decode_file(input_file_path, output_file_path):
+    # Define the Base64 decoding table
+    b64_table = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
