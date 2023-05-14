@@ -1,1 +1,0 @@
-: -m e -i base64file.txt -o base64fileencoded.txt 
