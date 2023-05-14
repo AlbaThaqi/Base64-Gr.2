@@ -54,6 +54,37 @@ def base64_decode_file(input_file_path, output_file_path):
         output_bytes += bytes([byte1, byte2, byte3])
 
     # Write the decoded byte array to the output file
+        # Read the input file as a string
+
+    with open(input_file_path, 'r') as input_file:
+
+        input_string = input_file.read()
+
+    # Remove any padding characters from the input string
+
+    input_string = input_string.rstrip('=')
+
+    # Convert the input string to a byte array
+
+    input_bytes = bytes([b64_table.index(char) for char in input_string])
+
+    # Initialize the output byte array
+
+    output_bytes = bytearray()
+
+    # Process the input bytes in groups of four
+
+    for i in range(0, len(input_bytes), 4):
+
+        # Get four Base64 values for processing
+
+        value1 = input_bytes[i]
+
+        value2 = input_bytes[i+1]
+
+        value3 = input_bytes[i+2]
+
+        value4 = input_bytes[i+3]
 
     with open(output_file_path, 'wb') as output_file:
 
